@@ -1,0 +1,53 @@
+
+
+--CREATE TABLE patDB.dbo.PATIENT_COVID_STATUS(
+--	HNID varchar(4) NOT NULL PRIMARY KEY,
+--	COVID19_STATUS varchar(10) COLLATE Thai_CI_AS NULL
+--)
+--INSERT INTO patDB.dbo.PATIENT_COVID_STATUS (HNID, COVID19_Status) VALUES('0001', 'Positive');
+--INSERT INTO patDB.dbo.PATIENT_COVID_STATUS (HNID, COVID19_Status) VALUES('0002', 'Positive');
+--INSERT INTO patDB.dbo.PATIENT_COVID_STATUS (HNID, COVID19_Status) VALUES('0003', 'Negative');
+--INSERT INTO patDB.dbo.PATIENT_COVID_STATUS (HNID, COVID19_Status) VALUES('0004', 'Positive');
+--INSERT INTO patDB.dbo.PATIENT_COVID_STATUS (HNID, COVID19_Status) VALUES('0005', 'Negative');
+
+--CREATE TABLE patDB.dbo.PATIENTS(
+--	HNID varchar(4) NOT NULL PRIMARY KEY,
+--	Firstname varchar(20) COLLATE Thai_CI_AS NULL,
+--	Lastname varchar(20) COLLATE Thai_CI_AS NULL,
+--	HID varchar(4)  NULL
+--)
+--DROP TABLE patDB.dbo.PATIENTS;
+--INSERT INTO patDB.dbo.PATIENTS (HNID, Firstname, Lastname, HID) VALUES('0001', 'Ayesha', 'Jenkins', '0001');
+--INSERT INTO patDB.dbo.PATIENTS (HNID, Firstname, Lastname, HID) VALUES('0002', 'Savannah', 'Mcintosh', '0002');
+--INSERT INTO patDB.dbo.PATIENTS (HNID, Firstname, Lastname, HID) VALUES('0003', 'Harley', 'Greene', '0002');
+--INSERT INTO patDB.dbo.PATIENTS (HNID, Firstname, Lastname, HID) VALUES('0004', 'Tilly', 'Frazier', '0001');
+--INSERT INTO patDB.dbo.PATIENTS (HNID, Firstname, Lastname, HID) VALUES('0005', 'Gloria', 'Hull', '0003');
+
+--CREATE TABLE patDB.dbo.HOSPITALS(
+--	HID varchar(4) NOT NULL PRIMARY KEY,
+--	Title varchar(20) COLLATE Thai_CI_AS NULL
+--)
+
+--INSERT INTO patDB.dbo.HOSPITALS (HID, Title) VALUES('0001', 'St. Violet Hospital');
+--INSERT INTO patDB.dbo.HOSPITALS (HID, Title) VALUES('0002', 'The Unity Health Center');
+--INSERT INTO patDB.dbo.HOSPITALS (HID, Title) VALUES('0003', 'John Medical Center');
+
+--SELECT p.HNID, Firstname, Lastname 
+--FROM patDB.dbo.PATIENTS p, patDB.dbo.PATIENT_COVID_STATUS pcs
+--WHERE p.HNID = pcs.HNID and pcs.COVID19_STATUS = 'Positive';
+
+--SELECT h.HID,Title, COUNT(p.HNID)AS patients 
+--FROM patDB.dbo.HOSPITALS h, patDB.dbo.PATIENT_COVID_STATUS pcs, patDB.dbo.PATIENTS p
+--WHERE p.HNID = pcs.HNID AND pcs.COVID19_STATUS = 'Positive' AND h.HID = p.HID
+--GROUP BY h.HID,Title;
+
+SELECT TOP(3) h.HID,Title, COUNT(p.HNID)AS patients 
+FROM patDB.dbo.HOSPITALS h, patDB.dbo.PATIENT_COVID_STATUS pcs, patDB.dbo.PATIENTS p
+WHERE p.HNID = pcs.HNID AND pcs.COVID19_STATUS = 'Positive' AND h.HID = p.HID
+GROUP BY h.HID,Title;
+
+
+
+
+
+

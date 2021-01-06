@@ -1,0 +1,126 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "โปรแกรมวิเคราะห์ข้อมูลผู้ป่วย COVID-19"
+  
+host: "localhost:3000"
+schemes:
+- "http"
+
+
+tags:
+- name: "report"
+  description: "report covid-19"
+ 
+paths:
+  /allpatients:
+    get:
+      tags:
+      - "report"
+      summary: "view all patients"
+      description: "view all patients"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: "Select all patients Positive success"
+          schema:
+            $ref: '#/definitions/allpatcode200'
+        404:
+          description: "NOT FOUND"
+          schema :
+            $ref : '#/definitions/code404'
+            
+  /nocovid :
+    get:
+      tags :
+      - "report"
+      summary: "view number of patients in hospital"
+      description: "view number of patients in hospital"
+      responses:
+        200:
+          description: "Select all patients Positive success"
+          schema:
+            $ref: '#/definitions/nocovidcode200'
+        404:
+          description: "NOT FOUND"
+          schema :
+            $ref : '#/definitions/code404'
+            
+            
+  /tophospital :
+    get:
+      tags :
+      - "report"
+      summary: "view top 3 hospital "
+      description: "view top 3 hospital"
+      responses:
+        200:
+          description: "Select all patients Positive success"
+          schema:
+            $ref: '#/definitions/top3hoscode200'
+        404:
+          description: "NOT FOUND"
+          schema :
+            $ref : '#/definitions/code404'
+    
+        
+            
+  
+  
+
+
+
+definitions:
+  code404: 
+    type: "object"
+    properties:
+      message: 
+        type: "string"
+        example:  "NOT FOUND"
+      statusCode:
+        type: "integer"
+        example: 404
+    
+      
+  allpatcode200: 
+    type: "object"
+    properties:
+      message: 
+        type: "string"
+        example:  "{ HNID : 0000,
+        Firstname : abc,
+        Lastname : efc}"
+      statusCode:
+        type: "integer"
+        example: 200
+    
+  
+  nocovidcode200: 
+    type: "object"
+    properties:
+      message: 
+        type: "string"
+        example:  "{ HID : 0000,
+        Title : a hospital,
+        number of patiebts : 1}"
+      statusCode:
+        type: "integer"
+        example: 200
+        
+        
+        
+  top3hoscode200: 
+    type: "object"
+    properties:
+      message: 
+        type: "string"
+        example:  "{ HID : 0000,
+        Title : a hospital,
+        number of patiebts : 1}"
+      statusCode:
+        type: "integer"
+        example: 200
+       
+ 
